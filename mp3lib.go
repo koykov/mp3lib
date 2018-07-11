@@ -2,7 +2,7 @@
 package mp3lib
 
 /*
-#cgo pkg-config: gstreamer-0.10
+#cgo pkg-config: gstreamer-1.0
 #include <gst/gst.h>
 gboolean bus_call(GstBus *bus, GstMessage *msg, gpointer data)
 {
@@ -71,7 +71,7 @@ static void media_seek(void *pipeline, gint64 pos)
 {
 	gint64 cpos;
 	GstFormat gformat = GST_FORMAT_TIME;
-	gst_element_query_position (pipeline, &gformat, &cpos);
+	gst_element_query_position (pipeline, gformat, &cpos);
 	cpos += pos*1000*1000*1000;
 	if (!gst_element_seek (pipeline, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
                          GST_SEEK_TYPE_SET, cpos,
